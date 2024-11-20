@@ -1,0 +1,25 @@
+version: '3'
+services:
+  manymail-sandbox:
+    build: .
+    ports:
+      - '8080:8080'
+      - '25:25'
+      - '465:465'
+      - '587:587'
+    volumes:
+      - .:/app
+    environment:
+      - ADMIN_USERNAME=root
+      - ADMIN_PASSWORD=root
+      - UNSECURE_SMTP_PORT=25
+      - SMTP_PORT=465
+      - STARTTLS_PORT=587
+      - RUN_UNSECURE_SMTP_SERVER=true
+      - RUN_SMTP_SERVER=true
+      - RUN_STARTTLS_SERVER=true
+      - ENABLE_LOGGING=true
+      - MAX_STORED_MESSAGES=1000000
+      - SMTP_KEY_FILE=
+      - SMTP_CERT_FILE=
+    restart: no
