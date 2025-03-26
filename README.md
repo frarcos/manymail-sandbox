@@ -21,10 +21,10 @@ ManyMail Sandbox SMTP is an open-source project designed for developers to self-
    SSL, TLS, and no-authentication servers can run simultaneously.
 2. Web Interface:
    A simple UI for viewing received emails.
-   Accessible at http://localhost:8080.
+   Accessible at http://localhost:3000.
 3. API Access:
    REST API for managing and retrieving emails.
-   Runs on port 8080.
+   Runs on port 3000.
 4. Authentication:
    Unified username and password for SMTP servers and the web interface.
    Credentials are stored in the `.env` file.
@@ -51,7 +51,7 @@ ManyMail Sandbox SMTP is an open-source project designed for developers to self-
    npm start
    ```
 4. Send emails to the sandbox SMTP server (see [examples](#6-usage-examples-client) below)
-5. Access the web interface at [http://localhost:8080]() using the credentials specified in the `.env` file (_ADMIN_USERNAME_ and _ADMIN_PASSWORD_).
+5. Access the web interface at [http://localhost:3000]() using the credentials specified in the `.env` file (_ADMIN_USERNAME_ and _ADMIN_PASSWORD_).
 
 ### Option 2: Using Docker
 
@@ -67,7 +67,7 @@ ManyMail Sandbox SMTP is an open-source project designed for developers to self-
    docker-compose -f docker-compose.yml up --build -d --force-recreate
    ```
 4. Send emails to the sandbox SMTP server (see [examples](#6-usage-examples) below)
-5. Access the web interface at [http://localhost:8080]() using the credentials specified in the `.env` file (_ADMIN_USERNAME_ and _ADMIN_PASSWORD_).
+5. Access the web interface at [http://localhost:3000]() using the credentials specified in the `.env` file (_ADMIN_USERNAME_ and _ADMIN_PASSWORD_).
 
 ## 3. Configuration
 
@@ -77,6 +77,7 @@ The `.env` file is used to customize the behavior of ManyMail Sandbox SMTP. Belo
 | ------------------------ | ------- | ----------------------------------------------------------------------------- |
 | ADMIN_USERNAME           | root    | Username for authentication in the web app and SMTP servers                   |
 | ADMIN_PASSWORD           | root    | Password for authentication in the web app and SMTP servers                   |
+| ADMIN_PORT               | 3000    | Port for the API and web app                                                  |
 | UNSECURE_SMTP_PORT       | 25      | Port for the unauthenticated SMTP server                                      |
 | SMTP_PORT                | 465     | Port for the unauthenticated SMTP server                                      |
 | STARTTLS_PORT            | 587     | Port for the STARTTLS SMTP server                                             |
@@ -90,7 +91,7 @@ The `.env` file is used to customize the behavior of ManyMail Sandbox SMTP. Belo
 
 ## 4. API Endpoints
 
-The API runs on port 8080 and provides endpoints for managing emails programmatically. API docs are WIP.
+The API runs on port 3000 and provides endpoints for managing emails programmatically. API docs are WIP.
 
 ## 5. Troubleshooting
 

@@ -9,7 +9,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 export const app = express();
-export const port = 8080;
+export const port = process.env.ADMIN_PORT || 3000;
 
 const logger = winston.createLogger({
 	level: 'info',
@@ -45,24 +45,18 @@ app.use((req, res, next) => {
 	next();
 });
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const buildPath = path.resolve(__dirname, '..', 'frontend', 'build', 'web');
-app.use(express.static(buildPath));
-app.get('/', (req, res) => {
-	res.sendFile(path.join(buildPath, 'index.html'));
-});
-
 app.use('/api', router);
 app.use(
 	'/data',
 	validateBasicAuth,
 	express.static(path.join(path.resolve(), 'data'))
 );
-app.use((req, res) => {
-	res.status(httpStatus.NOT_FOUND).json({
-		message: 'API path not found',
-	});
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const buildPath = path.resolve(__dirname, '..', 'frontend', 'build', 'web');
+app.use(express.static(buildPath));
+app.get('*', (req, res) => {
+	res.sendFile(path.join(buildPath, 'index.html'));
 });
 app.use((err, req, res, next) => {
 	if (process.env.ENABLE_LOGGING) {

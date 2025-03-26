@@ -3,7 +3,7 @@ services:
   manymail-sandbox:
     build: .
     ports:
-      - '8080:8080'
+      - '3000:3000'
       - '25:25'
       - '465:465'
       - '587:587'
@@ -12,6 +12,7 @@ services:
     environment:
       - ADMIN_USERNAME=root
       - ADMIN_PASSWORD=root
+      - ADMIN_PORT=3000
       - UNSECURE_SMTP_PORT=25
       - SMTP_PORT=465
       - STARTTLS_PORT=587
